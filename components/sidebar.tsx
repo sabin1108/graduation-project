@@ -20,15 +20,25 @@ import {
   ChefHat,
   Apple,
   Link,
+  Edit,
+  Trash2,
+  MessageSquarePlus,
 } from "lucide-react"
 import ImageCarousel from "./image-carousel"
 import ImageModal from "./image-modal"
+import { type Chat } from "@/hooks/use-chat-history"
 
 type SidebarProps = {
   isMobileMenuOpen: boolean
   setIsMobileMenuOpen: (isOpen: boolean) => void
   onCalendarClick: () => void
   onMenuClick: (menu: string) => void
+  chats: Chat[]
+  activeChat: Chat | null
+  onAddChat: () => void
+  onDeleteChat: (chatId: string) => void
+  onRenameChat: (chatId: string, newName: string) => void
+  onSetActiveChat: (chatId: string) => void
 }
 
 type MenuItem = {
@@ -80,12 +90,25 @@ const CollapsibleSection = ({ title, icon, children, defaultExpanded = false }: 
   )
 }
 
-export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalendarClick, onMenuClick }: SidebarProps) {
+export default function Sidebar({
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+  onCalendarClick,
+  onMenuClick,
+  chats,
+  activeChat,
+  onAddChat,
+  onDeleteChat,
+  onRenameChat,
+  onSetActiveChat,
+}: SidebarProps) {
   const [activeItem, setActiveItem] = useState("학사 일정")
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
   const [selectedImageUrl, setSelectedImageUrl] = useState("")
   const [selectedImageLink, setSelectedImageLink] = useState("")
+  const [editingChatId, setEditingChatId] = useState<string | null>(null)
+  const [editingChatName, setEditingChatName] = useState("")
 
   const carouselImages = [
     {
@@ -186,6 +209,27 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
     }
   }
 
+  const handleRenameClick = (e: React.MouseEvent, chatId: string, currentName: string) => {
+    e.stopPropagation()
+    setEditingChatId(chatId)
+    setEditingChatName(currentName)
+  }
+
+  const handleRenameSubmit = (chatId: string) => {
+    if (editingChatName.trim() !== "") {
+      onRenameChat(chatId, editingChatName.trim())
+    }
+    setEditingChatId(null)
+    setEditingChatName("")
+  }
+
+  const handleDeleteChat = (e: React.MouseEvent, chatId: string, chatName: string) => {
+    e.stopPropagation()
+    if (confirm(`'${chatName}' 대화를 삭제하시겠습니까?`)) {
+      onDeleteChat(chatId)
+    }
+  }
+
   return (
     <>
       {/* 모바일 오버레이 */}
@@ -238,7 +282,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
           onScroll={handleScroll}
         >
           {/* 캐러셀 섹션 */}
-          <div className="p-4 pb-0">
+          <div className="p-4 pb-0 mt-4">
             <h3 className="text-sm font-medium text-gray-700 mb-2">CAMPUS NEWS</h3>
             <ImageCarousel
               images={carouselImages} // 이미지 배열
@@ -248,6 +292,74 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
             <div className="mt-3 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
               <p>한경국립대학교의 최신 소식과 이벤트를 확인하세요. 캠퍼스 내 다양한 활동과 학술 행사에 참여해보세요.</p>
             </div>
+          </div>
+
+          {/* Chat History Section */}
+          <div className="p-4">
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-sm font-medium text-gray-700">대화 기록</h3>
+              <button
+                onClick={onAddChat}
+                className="flex items-center text-sm text-primary hover:underline"
+              >
+                <MessageSquarePlus className="w-4 h-4 mr-1" />
+                새 대화
+              </button>
+            </div>
+            <div className="space-y-1 max-h-32 overflow-y-auto scrollbar-thin">
+              {chats.map((chat) => (
+                <div key={chat.id} className="group">
+                  <button
+                    onClick={() => onSetActiveChat(chat.id)}
+                    className={`w-full flex items-center text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                      activeChat?.id === chat.id
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {editingChatId === chat.id ? (
+                      <input
+                        type="text"
+                        value={editingChatName}
+                        onChange={(e) => setEditingChatName(e.target.value)}
+                        onBlur={() => handleRenameSubmit(chat.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleRenameSubmit(chat.id);
+                          } else if (e.key === 'Escape') {
+                            setEditingChatId(null);
+                            setEditingChatName("");
+                          }
+                        }}
+                        className="flex-1 bg-transparent focus:outline-none"
+                        autoFocus
+                      />
+                    ) : (
+                      <span className="truncate flex-1">{chat.name}</span>
+                    )}
+                    <div className="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={(e) => handleRenameClick(e, chat.id, chat.name)}
+                        className="p-1 hover:bg-gray-200 rounded"
+                        aria-label="Rename chat"
+                      >
+                        <Edit className="w-3 h-3" />
+                      </button>
+                      <button
+                        onClick={(e) => handleDeleteChat(e, chat.id, chat.name)}
+                        className="p-1 hover:bg-gray-200 rounded"
+                        aria-label="Delete chat"
+                      >
+                        <Trash2 className="w-3 h-3 text-red-500" />
+                      </button>
+                    </div>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="px-4">
+            <hr />
           </div>
 
           {/* 사이드바 메뉴 */}
@@ -260,7 +372,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
                   onClick={() => handleMenuClick(item)}
                   className={`w-full flex items-center px-4 py-3 text-sm rounded-lg transition-colors ${
                     activeItem === item.name
-                      ? "bg-gradient-to-r from-primary/10 to-secondary/10 text-primary font-medium shadow-sm"
+                      ? "bg-primary/10 text-primary font-medium"
                       : "text-gray-700 hover:bg-gray-100"
                   } ${item.url || item.onClick ? "cursor-pointer" : ""}`}
                 >

@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { v4 as uuidv4 } from "uuid"
-// import { useChat } from "ai/react" // 이 줄은 제거됩니다.
+import { useChatHistory } from "@/hooks/use-chat-history"
 import {
   Send,
   Settings,
@@ -43,7 +43,16 @@ import { TutorialOverlay } from "./tutorial-overlay"
 
 
 export default function EnhancedChatInterface() {
-  const [messages, setMessages] = useState<{ id: string; role: "user" | "assistant"; content: string }[]>([])
+  const {
+    messages,
+    setMessages,
+    chats,
+    activeChat,
+    addChat,
+    deleteChat,
+    renameChat,
+    setActiveChat,
+  } = useChatHistory()
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -72,7 +81,8 @@ export default function EnhancedChatInterface() {
     if (!currentMessage) return
 
     const userMessage = { id: Date.now().toString(), role: "user" as const, content: currentMessage }
-    setMessages((prevMessages) => [...prevMessages, userMessage])
+    const newMessagesWithUser = [...messages, userMessage]
+    setMessages(newMessagesWithUser)
     setInput("")
 
     setIsLoading(true)
@@ -97,11 +107,11 @@ export default function EnhancedChatInterface() {
         role: "assistant" as const,
         content: data.answer || "응답이 없습니다.",
       }
-      setMessages((prevMessages) => [...prevMessages, assistantMessage])
+      setMessages([...newMessagesWithUser, assistantMessage])
     } catch (error) {
       console.error("Error sending message:", error)
-      setMessages((prevMessages) => [
-        ...prevMessages,
+      setMessages([
+        ...newMessagesWithUser,
         { id: Date.now().toString() + "-error", role: "assistant", content: "메시지 전송 중 오류가 발생했습니다." },
       ])
     } finally {
@@ -135,9 +145,10 @@ export default function EnhancedChatInterface() {
   }
 
   const clearChat = () => {
-    if (confirm("모든 대화를 삭제하시겠습니까?")) {
-      // 채팅 초기화 로직
-      window.location.reload()
+    if (confirm("이 대화를 삭제하시겠습니까?")) {
+      if (activeChat) {
+        deleteChat(activeChat.id)
+      }
     }
   }
 
@@ -173,6 +184,12 @@ export default function EnhancedChatInterface() {
           setIsMobileMenuOpen={setIsMobileMenuOpen}
           onCalendarClick={() => setShowCalendar(true)}
           onMenuClick={handleMenuClick}
+          chats={chats}
+          activeChat={activeChat}
+          onAddChat={addChat}
+  onDeleteChat={deleteChat}
+  onRenameChat={renameChat}
+  onSetActiveChat={setActiveChat}
         />
       )}
 
@@ -339,8 +356,8 @@ export default function EnhancedChatInterface() {
                         p: ({ node, ...props }) => <p className="mb-4 last:mb-0" {...props} />,
                       }}
                     >
-                      {message.content
-                        .replace(/\((https?:\/\/[^)]+)\)/g, (match, url) => `[🔗](${url})`)
+                      {(message.content || "")
+                        .replace(/\((https?:\/\/[^)]+)\)/g, (_match: string, url: string) => `[🔗](${url})`)
                         .replace(/(\[[^\n]*\d{4}(?:-\d{2}-\d{2})?[^\n]*\])/g, `
 
 - $1`)
