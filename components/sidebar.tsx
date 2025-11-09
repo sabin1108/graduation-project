@@ -132,8 +132,6 @@ export default function Sidebar({
 
   const menuItems: MenuItem[] = [
     { name: "학사 일정", icon: <Calendar className="w-5 h-5" />, onClick: onCalendarClick },
-    { name: "수강 신청", icon: <BookText className="w-5 h-5" />, url: "https://sugang.hknu.ac.kr/login" },
-    { name: "도서관", icon: <Library className="w-5 h-5" />, url: "https://lib.hknu.ac.kr/" },
   ]
 
   const mealMenuItems = [
@@ -151,6 +149,8 @@ export default function Sidebar({
       url: "https://cyber.hknu.ac.kr/ilos/main/main_form.acl",
     },
     { name: "학사시스템", icon: <Info className="w-4 h-4" />, url: "https://info.hknu.ac.kr/intro/index.html#/login" },
+    { name: "수강 신청", icon: <BookText className="w-4 h-4" />, url: "https://sugang.hknu.ac.kr/login" },
+    { name: "도서관", icon: <Library className="w-4 h-4" />, url: "https://lib.hknu.ac.kr/" },
   ]
 
   // 연락처 정보
@@ -370,9 +370,9 @@ export default function Sidebar({
                 <button
                   key={item.name}
                   onClick={() => handleMenuClick(item)}
-                  className={`w-full flex items-center px-4 py-3 text-sm rounded-lg transition-colors ${
+                  className={`w-full flex items-center px-4 py-4 text-sm rounded-lg transition-colors ${
                     activeItem === item.name
-                      ? "bg-primary/10 text-primary font-medium"
+                      ? "bg-gray-100 text-primary font-medium"
                       : "text-gray-700 hover:bg-gray-100"
                   } ${item.url || item.onClick ? "cursor-pointer" : ""}`}
                 >
@@ -396,21 +396,20 @@ export default function Sidebar({
                   )}
                 </button>
               ))}
-            </div>
-            <CollapsibleSection title="학식 메뉴" icon={<Apple className="w-5 h-5" />}>
-              <div className="space-y-2">
-                {mealMenuItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => onMenuClick(item.name)}
-                    className="w-full flex items-center px-4 py-2 text-sm rounded-lg text-gray-700 hover:bg-gray-100"
-                  >
-                    <span className="text-primary">{item.icon}</span>
-                    {item.name}
-                  </button>
-                ))}
-              </div>
-            </CollapsibleSection>
+                          <CollapsibleSection title="학식 메뉴" icon={<Utensils className="w-5 h-5" />}>
+                            <div className="space-y-2">
+                              {mealMenuItems.map((item) => (
+                                <button
+                                  key={item.name}
+                                  onClick={() => onMenuClick(item.name)}
+                                  className="w-full flex items-center px-4 py-2 text-sm rounded-lg text-gray-700 hover:bg-gray-100"
+                                >
+                                  <span className="text-primary">{item.icon}</span>
+                                  {item.name}
+                                </button>
+                              ))}
+                            </div>
+                          </CollapsibleSection>            </div>
           </div>
 
           {/* 접을 수 있는 섹션들 */}

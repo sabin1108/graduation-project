@@ -71,6 +71,48 @@ export default function EnhancedChatInterface() {
     setUserId(uuidv4())
   }, [])
 
+  useEffect(() => {
+    // Show welcome message for empty chats
+    if (activeChat && messages.length === 0 && !isLoading) {
+      const welcomeMessage = {
+        id: "initial-message",
+        role: "assistant" as const,
+        content:
+          `[한경국립대학교 챗봇 사용 안내]
+
+안녕하세요 한경국립대학교 챗봇입니다! 무엇을 도와드릴까요? 학사 일정, 학식 메뉴, 빠른 링크 등 다양한 정보를 얻을 수 있습니다. 궁금한 점이 있다면 언제든지 물어봐주세요!
+
+[주요 기능별 사용 방법 예시]
+
+챗봇은 요청하시는 월 또는 날짜를 함께 입력하시면 해당 정보를 빠르고 정확하게 찾아줍니다.
+
+1. 공지사항 (월 입력 필수)
+- 📌 장학 공지 확인
+  예시: 10월 장학공지
+
+- 📌 한경 일반 공지 확인
+  예시: 10월 한경공지
+
+- 📌 학사 공지 확인
+  예시: 10월 학사공지
+
+2. 식단 정보 (날짜 입력 필수)
+- 📌 교직원 식당 식단
+  예시: 11월 5일 교직원식당
+
+- 📌 기숙사 식당 식단
+  예시: 11월 05일 기숙사식당
+
+- 📌 학생 식당 식단
+  예시: 11월 05일 학생식당
+
+
+**사용 팁:** [월/날짜] + [원하는 정보] 형태로 입력하시면 됩니다.`,
+      }
+      setMessages([welcomeMessage])
+    }
+  }, [activeChat, messages.length, isLoading, setMessages])
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
   }
