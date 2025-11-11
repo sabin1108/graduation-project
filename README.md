@@ -27,7 +27,7 @@
 
 ## 주요 기능
 ### 1. 메인 화면
-![loding page](https://i.ibb.co/QjmcG2Kc/image.gif)
+![Image](https://github.com/user-attachments/assets/0e71eff6-685d-42b2-b21d-1d9d317bd925)
 ![main page](https://i.postimg.cc/mg3PgsXJ/seukeulinsyas-2025-10-24-170236.png)
 - 좌측 사이드바: 메뉴 네비게이션
 - 중앙: 대화 인터페이스
@@ -82,11 +82,11 @@
 - 대화 삭제 기능
 - 가이드 기능  
 #### 5.1 대화 내보내기 기능
-![text](https://i.ibb.co/C42Tj38/image.gif)
+![Image](https://github.com/user-attachments/assets/37943b44-4b02-40cf-a250-96444a3c66ef)
 - 필요한 대화 내용 txt 파일로 저장
 
 #### 5.2 폰트 조절기능
-![font](https://i.ibb.co/xtrx4mj7/image.gif)
+![Image](https://github.com/user-attachments/assets/5ef642f2-edac-422c-85bc-4f0e97f95218)
 
 - 원하는 폰트로 크기 변환
 #### 5.3 가이드 기능
@@ -94,7 +94,7 @@
 - 초기 사용자를 위한 가이드 기능능
 
 ### 6. 반응형 디자인
-![calender](https://i.ibb.co/HpRMwCjD/image.gif)
+![Image](https://github.com/user-attachments/assets/d78ecf15-9343-4261-ae9f-80fc56fbbbc1)
 - 모바일 최적화
 - 다양한 화면 크기 대응
 
