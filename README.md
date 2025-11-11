@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# 한경국립대학교 AI 챗봇
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+한경국립대학교 학생들을 위한 지능형 대화 시스템으로, 학사 일정, 공지사항, 수강 신청 등 다양한 대학 생활 정보를 실시간으로 제공하여 어려움을 해결합니다.
 
-## Available Scripts
+![메인 화면면](https://i.postimg.cc/QCgssXSr/meinlogeu.png)
 
-In the project directory, you can run:
+## 목차
 
-### `npm start`
+- [개요](#-개요)
+- [주요 기능](#-주요-기능)
+- [기술 스택](#-기술-스택)
+- [개발 환경](#-개발-환경)
+- [주요 화면](#-주요-화면)
+- [설치 및 실행](#-설치-및-실행)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 개요
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+한경국립대학교 AI 챗봇은 학생들이 대학 생활에 필요한 정보를 쉽고 빠르게 얻을 수 있도록 돕는 대화형 인공지능 시스템입니다. 자연어 처리 기술을 활용하여 학생들의 질문을 이해하고, 학사 일정, 수강 신청, 공지사항 등 다양한 정보를 실시간으로 제공합니다.
 
-### `npm test`
+### 프로젝트 목표
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 학생들의 정보 접근성 향상 - 분활된 정보 그룹화
+- 실시간 학사 정보 제공
+- 다양한 학교 연계 사이트 제공
+- 학교 행사 및 공모전에 대한 홍보 및 정보 제공
+- 직관적이고 사용하기 쉬운 인터페이스 구현 - 사용자의 UX를 우선
 
-### `npm run build`
+## 주요 기능
+### 1. 메인 화면
+![loding page](https://i.ibb.co/QjmcG2Kc/image.gif)
+![main page](https://i.postimg.cc/mg3PgsXJ/seukeulinsyas-2025-10-24-170236.png)
+- 좌측 사이드바: 메뉴 네비게이션
+- 중앙: 대화 인터페이스
+- 채팅 히스토리 관리
+### 2. 지능형 대화 시스템
+- 자연어 기반 질의응답
+- 맥락을 이해하는 대화 연속성
+- 다양한 학사 관련 질문 처리
+- 실시간 응답 제공
+- 데이터베이스를 통한 정확한 정보 제공
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. 학사 일정 관리
+![Calendar Feature](https://i.postimg.cc/XYSNTz8Y/hagsailjeong-sajin.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 인터랙티브 캘린더 UI
+- 학기별 주요 일정 표시
+  - 수강 신청 기간
+  - 시험 기간
+  - 학사 일정
+  - 방학 정보
+- 월별/일별 일정 조회
+    - 이벤트 색상 코딩
+### 4. 공지사항 및 소식
+![Notification Feature](https://i.postimg.cc/QdGNRyb8/hagsagongji-yesi.png)
+- 최신 공지사항 자동 업데이트
+- 학사, 장학, 한경 공지 카테고리별 분류
+- 제공된 공지사항 링크화
+- 시간순 공지 나열
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 4.1 학교 행사 및 소식 
 
-### `npm run eject`
+![Notice Feature](https://i.postimg.cc/4xk4rS5X/hongbo-poseuteo-yesi.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 행사 및 대회 정보 제공
+- 클릭시 링크로 이동
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. 식단 정보
+![menu](https://i.postimg.cc/SkjXz0YX/sigdan-pyosi-yesi.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 학생 식당 메뉴 확인
+- 기숙사 식당 메뉴 확인
+- 교직원 식당 메뉴 확인
+- 원하는 날짜 메뉴 확인 가능능
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 5. 사용자 편의성 기능
+![UX](https://i.postimg.cc/2m6f7CjY/seukeulinsyas-2025-07-21-210402.png)
+- 폰트 크기 조절기능
+- 자동 스크롤 기능
+- 음성 알림 기능
+- 시간 표시 기능
+- 대화 내보내기 기능
+- 대화 삭제 기능
+- 가이드 기능  
+#### 5.1 대화 내보내기 기능
+![text](https://i.ibb.co/C42Tj38/image.gif)
+- 필요한 대화 내용 txt 파일로 저장
 
-## Learn More
+#### 5.2 폰트 조절기능
+![font](https://i.ibb.co/xtrx4mj7/image.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 원하는 폰트로 크기 변환
+#### 5.3 가이드 기능
+![guid](https://i.postimg.cc/25QvBW0t/seukeulinsyas-2025-11-12-004355.png)
+- 초기 사용자를 위한 가이드 기능능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 6. 반응형 디자인
+![calender](https://i.ibb.co/HpRMwCjD/image.gif)
+- 모바일 최적화
+- 다양한 화면 크기 대응
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🛠 기술 스택
 
-### Making a Progressive Web App
+### Frontend
+```
+- next.js(App Router) : React 기반의 풀스택 프레임워크입니다. App Router를 사용하여 서버 컴포넌트, SEO 최적화, 향상된 라우팅 기능을 활용합니다
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- TypeScript : 정적 타입을 지원하여 코드의 안정성과 가독성을 높이고, 개발 단계에서 오류를 미리 방지하기 위해 사용되었습니다.
 
-### Advanced Configuration
+- React.js : React에 내장된 Hooks를 최대한 활용하여 상태 관리 로직을 간결하게 유지했습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Tailwind CSS : 유틸리티-우선 CSS 프레임워크로, `shadcn/ui`와 함께 일관되고 빠르게 UI를 구축하기 위해 사용되었습니다.
+```
 
-### Deployment
+**Frontend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) 
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+**Backend**
+
+![NCP](https://img.shields.io/badge/NCP-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![OpenAI API](https://img.shields.io/badge/OpenAI%20API-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white)
+
+
+
+
+
+
+
+
+
+
+
