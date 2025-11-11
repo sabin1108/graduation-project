@@ -26,7 +26,7 @@
 ## 주요 기능
 ### 1. 메인 화면
 ![Image](https://github.com/user-attachments/assets/0e71eff6-685d-42b2-b21d-1d9d317bd925)
-![main page](https://i.postimg.cc/mg3PgsXJ/seukeulinsyas-2025-10-24-170236.png)
+![main page](https://i.postimg.cc/Qh1yrMjW/meinhwamyeon.png)
 - 좌측 사이드바: 메뉴 네비게이션
 - 중앙: 대화 인터페이스
 - 채팅 히스토리 관리
