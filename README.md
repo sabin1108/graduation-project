@@ -135,6 +135,26 @@
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white)
 
 
+<div sytle="overflow:hidden;">
+<table>
+  <tr>
+    <td colspan="1" align="center"><strong>BackEnd</strong></td>
+    <td colspan="1" align="center"><strong>FrontEnd</strong></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/sabin1108"><img src="https://avatars.githubusercontent.com/u/67681246?v=4" width="150px" alt="민사빈"/><br/><sub><b>민사빈</b></sub></a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/thatgirls00"><img src="https://avatars.githubusercontent.com/u/109068985?v=4" width="150px;" alt="전현수"/><br/><sub><b>전현수</b></sub></a>
+    </td>
+  </tr>
+</table>
+
+> 민사빈 : React, TypeScript 기반 UI/UX 개발 및 TailwindCss 페이지 디자인, API 연동 <br><br>
+> 전현수 : Spring API Server (Java) / NCP 서버 연동 / 학교 데이터 크롤러 및 전처리(Python) / 
+</div>
+<br>
 
 
 
