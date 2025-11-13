@@ -62,7 +62,7 @@
 - 행사 및 대회 정보 제공
 - 클릭시 링크로 이동
 
-### 4. 식단 정보
+#### 4.2 식단 정보
 ![menu](https://i.postimg.cc/SkjXz0YX/sigdan-pyosi-yesi.png)
 
 - 학생 식당 메뉴 확인
