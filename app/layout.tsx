@@ -4,9 +4,12 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
+  title: "한경국립대학교 AI 챗봇",
+  description: "한경국립대학교 학생들을 위한 AI 챗봇 서비스입니다.",
+  generator: "한경국립대학교 AI 챗봇",
+  icons: {
+    icon: "/icon.png",
+  },
 }
 
 export default function RootLayout({

@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { useChatHistory } from "@/hooks/use-chat-history"
+import { API_ROUTES } from "@/lib/constants"
 import {
   Send,
   Settings,
@@ -130,7 +131,7 @@ export default function EnhancedChatInterface() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch(API_ROUTES.CHAT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

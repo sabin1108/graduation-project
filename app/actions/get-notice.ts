@@ -1,6 +1,8 @@
+import { API_ROUTES } from "@/lib/constants";
+
 export async function getNotice(category: string): Promise<string> {
   try {
-    const res = await fetch(`/api/notice?category=${category}`, {
+    const res = await fetch(`${API_ROUTES.NOTICE}?category=${category}`, {
       next: { revalidate: 0 },
     });
 
@@ -40,7 +42,7 @@ export async function getNotice(category: string): Promise<string> {
 
 export async function getMenuForCategory(category: string): Promise<{ date: string; time: string; menu: string[] }[]> {
   try {
-    const res = await fetch(`/api/notice?category=${encodeURIComponent(category)}`, {
+    const res = await fetch(`${API_ROUTES.NOTICE}?category=${encodeURIComponent(category)}`, {
       next: { revalidate: 0 },
     });
 

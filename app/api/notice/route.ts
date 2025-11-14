@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
   }
 
   const endpoint = categoryMap[category];
-  const apiUrl = `http://211.188.57.74:8080/api/${endpoint}/search`;
+  const apiUrl = `${process.env.EXTERNAL_API_URL}/api/${endpoint}/search`;
 
   try {
     const res = await fetch(apiUrl);

@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'userId is required' }, { status: 400 });
     }
 
-    const response = await fetch('http://211.188.57.74:8080/api/chat/intent', {
+    const response = await fetch(`${process.env.EXTERNAL_API_URL}/api/chat/intent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
